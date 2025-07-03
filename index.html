@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Token取得ブックマークレット</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #5865F2;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            color: #856404;
+        }
+        
+        .warning h3 {
+            margin-top: 0;
+            color: #e17055;
+        }
+        
+        .bookmarklet-container {
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .bookmarklet-link {
+            display: inline-block;
+            background: #5865F2;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 10px 0;
+        }
+        
+        .bookmarklet-link:hover {
+            background: #4752C4;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(88, 101, 242, 0.3);
+        }
+        
+        .instructions {
+            background: #e3f2fd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .instructions h3 {
+            color: #1976d2;
+            margin-top: 0;
+        }
+        
+        .step {
+            margin: 10px 0;
+            padding: 5px 0;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #dee2e6;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Discord Token取得ブックマークレット</h1>
+        
+        <div class="warning">
+            <h3>⚠️ 重要な注意事項</h3>
+            <p><strong>このツールは自分のアカウントのトークンを取得するためのものです。</strong></p>
+            <ul>
+                <li>取得したトークンは絶対に他人に教えないでください</li>
+                <li>トークンが漏洩すると、アカウントが乗っ取られる可能性があります</li>
+                <li>開発・テスト目的でのみ使用してください</li>
+                <li>Discordの利用規約を遵守してください</li>
+            </ul>
+        </div>
+        
+        <div class="bookmarklet-container">
+            <h3>📌 ブックマークレット</h3>
+            <p>以下のリンクをブックマークバーにドラッグ&ドロップしてください：</p>
+            <a href="javascript:(function(){const token=localStorage.getItem('token')||sessionStorage.getItem('token');if(token){const cleanToken=token.replace(/[&quot;]/g,'');navigator.clipboard.writeText(cleanToken).then(()=>{alert('✅ トークンをクリップボードにコピーしました！\n\n注意: このトークンは絶対に他人に教えないでください。');}).catch(()=>{prompt('📋 以下のトークンをコピーしてください（手動コピー）:',cleanToken);});}else{alert('❌ トークンが見つかりませんでした。\n\n以下を確認してください:\n1. Discordにログインしているか\n2. discord.com または discordapp.com でブックマークレットを実行しているか');}})();" class="bookmarklet-link">Discord Token取得</a>
+        </div>
+        
+        <div class="instructions">
+            <h3>📋 使用方法</h3>
+            <div class="step">1️⃣ 上記のリンクをブックマークバーにドラッグ&ドロップ</div>
+            <div class="step">2️⃣ Discord（discord.com または discordapp.com）にアクセス</div>
+            <div class="step">3️⃣ Discordにログイン</div>
+            <div class="step">4️⃣ ブックマークレットをクリック</div>
+            <div class="step">5️⃣ トークンが自動的にクリップボードにコピーされます</div>
+        </div>
+        
+        <div class="instructions">
+            <h3>🛠️ 手動での取得方法</h3>
+            <div class="step">1️⃣ Discord（Web版）でF12を押して開発者ツールを開く</div>
+            <div class="step">2️⃣ Consoleタブをクリック</div>
+            <div class="step">3️⃣ 以下のコードを貼り付けて実行：</div>
+            <div class="code-block">
+// トークンを取得してコピー
+const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+if (token) {
+    const cleanToken = token.replace(/["]/g, '');
+    console.log('Your Discord Token:', cleanToken);
+    navigator.clipboard.writeText(cleanToken);
+    console.log('✅ トークンをクリップボードにコピーしました！');
+} else {
+    console.log('❌ トークンが見つかりませんでした');
+}
+            </div>
+        </div>
+        
+        <div class="warning">
+            <h3>🔒 セキュリティについて</h3>
+            <p>取得したトークンは以下の点にご注意ください：</p>
+            <ul>
+                <li>トークンは「パスワード」と同じくらい重要です</li>
+                <li>GitHub等の公開リポジトリに絶対にアップロードしないでください</li>
+                <li>不審な活動を発見した場合は、すぐにパスワードを変更してください</li>
+                <li>定期的にアカウントのセキュリティを確認してください</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>このツールは教育・開発目的で作成されています。<br>
+            適切に使用し、セキュリティを保つことが重要です。</p>
+        </div>
+    </div>
+</body>
+</html>
