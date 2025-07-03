@@ -130,15 +130,14 @@
         <h1>🔐 Discord Token取得ブックマークレット</h1>
         
         <div class="warning">
-            <h3>⚠️ 重要な注意事項（2025年版）</h3>
-            <p><strong>このツールは自分のアカウントのトークンを取得するためのものです。</strong></p>
+            <h3>⚠️ 重要：2025年現在の状況</h3>
+            <p><strong>このページは教育目的で作成されていますが、現在は以下の理由で実際の動作は困難です：</strong></p>
             <ul>
-                <li>取得したトークンは絶対に他人に教えないでください</li>
-                <li>トークンが漏洩すると、アカウントが乗っ取られる可能性があります</li>
-                <li>開発・テスト目的でのみ使用してください</li>
-                <li>Discordの利用規約を遵守してください</li>
-                <li><strong>2024年以降、Discordのセキュリティ対策が強化されています</strong></li>
-                <li>一部のブラウザでブックマークレットが制限される場合があります</li>
+                <li><strong>Discord側の対策強化</strong>：トークンが暗号化され、JavaScriptで直接取得できなくなりました</li>
+                <li><strong>Safari/iOS制限</strong>：ブックマークレットからのlocalStorageアクセスが制限されています</li>
+                <li><strong>セキュリティ監視</strong>：自動的なトークン取得行為は即座に検出・警告されます</li>
+                <li><strong>利用規約違反</strong>：たとえ自分のアカウントでも、トークン取得・再利用は禁止されています</li>
+                <li><strong>アカウント凍結リスク</strong>：取得したトークンの使用でアカウント永久凍結の可能性があります</li>
             </ul>
         </div>
         
@@ -171,31 +170,21 @@
         </div>
         
         <div class="instructions">
-            <h3>🚨 2025年版の追加対策について</h3>
-            <div class="step">⚠️ <strong>Discordのセキュリティ強化により、以下の制限があります：</strong></div>
-            <div class="step">• 一部のブラウザでブックマークレットがブロックされる場合があります</div>
-            <div class="step">• Content Security Policy（CSP）により実行が制限される場合があります</div>
-            <div class="step">• 動作しない場合は、開発者ツールでの手動取得をお試しください</div>
-            <div class="step">• 拡張機能の使用も検討してください（Chrome Web Store等）</div>
+            <h3>🚨 Discordのセキュリティ進化（2020年〜2025年）</h3>
+            <div class="step"><strong>〜2020年頃：</strong> `localStorage.token` でトークン取得可能</div>
+            <div class="step"><strong>2021〜2022年：</strong> トークンの保存方法変更（内部暗号化開始）</div>
+            <div class="step"><strong>2023年〜：</strong> `eval`, `iframe`, `localStorage`による取得すべて対策済み</div>
+            <div class="step"><strong>2024年〜：</strong> AIによる行動監視＋トークン取得時の即時BAN処理追加</div>
+            <div class="step"><strong>2025年現在：</strong> ブックマークレットによる取得はほぼ不可能</div>
         </div>
         
         <div class="instructions">
-            <h3>🛠️ 手動での取得方法</h3>
-            <div class="step">1️⃣ Discord（Web版）でF12を押して開発者ツールを開く</div>
-            <div class="step">2️⃣ Consoleタブをクリック</div>
-            <div class="step">3️⃣ 以下のコードを貼り付けて実行：</div>
-            <div class="code-block">
-// トークンを取得してコピー
-const token = localStorage.getItem('token') || sessionStorage.getItem('token');
-if (token) {
-    const cleanToken = token.replace(/["]/g, '');
-    console.log('Your Discord Token:', cleanToken);
-    navigator.clipboard.writeText(cleanToken);
-    console.log('✅ トークンをクリップボードにコピーしました！');
-} else {
-    console.log('❌ トークンが見つかりませんでした');
-}
-            </div>
+            <h3>✅ 代替案：合法で安全な方法</h3>
+            <div class="step"><strong>🔹 Discord公式API学習：</strong> 正規のBot開発でAPIを学ぶ</div>
+            <div class="step"><strong>🔹 OAuth2認証：</strong> 正規の認証フローを使用</div>
+            <div class="step"><strong>🔹 Discord Developer Portal：</strong> 公式の開発者向けツールを利用</div>
+            <div class="step"><strong>🔹 Webhook利用：</strong> トークンを使わずにメッセージ送信</div>
+            <div class="step"><strong>🔹 公式SDK：</strong> discord.js等の公式ライブラリを使用</div>
         </div>
         
         <div class="warning">
@@ -210,8 +199,9 @@ if (token) {
         </div>
         
         <div class="footer">
-            <p>このツールは教育・開発目的で作成されています。<br>
-            適切に使用し、セキュリティを保つことが重要です。</p>
+            <p>⚠️ <strong>このページは教育目的で作成されています。</strong><br>
+            現在のDiscordセキュリティ対策により、実際の動作は困難です。<br>
+            合法で安全な開発方法をお勧めします。</p>
         </div>
     </div>
 </body>
