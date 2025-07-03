@@ -98,6 +98,24 @@
             margin: 15px 0;
         }
         
+        .mobile-instructions {
+            margin-top: 15px;
+        }
+        
+        .mobile-instructions h4 {
+            color: #5865F2;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .mobile-instructions ol {
+            margin-left: 20px;
+        }
+        
+        .mobile-instructions li {
+            margin-bottom: 5px;
+        }
+        
         .footer {
             text-align: center;
             margin-top: 30px;
@@ -112,29 +130,53 @@
         <h1>🔐 Discord Token取得ブックマークレット</h1>
         
         <div class="warning">
-            <h3>⚠️ 重要な注意事項</h3>
+            <h3>⚠️ 重要な注意事項（2025年版）</h3>
             <p><strong>このツールは自分のアカウントのトークンを取得するためのものです。</strong></p>
             <ul>
                 <li>取得したトークンは絶対に他人に教えないでください</li>
                 <li>トークンが漏洩すると、アカウントが乗っ取られる可能性があります</li>
                 <li>開発・テスト目的でのみ使用してください</li>
                 <li>Discordの利用規約を遵守してください</li>
+                <li><strong>2024年以降、Discordのセキュリティ対策が強化されています</strong></li>
+                <li>一部のブラウザでブックマークレットが制限される場合があります</li>
             </ul>
         </div>
         
         <div class="bookmarklet-container">
-            <h3>📌 ブックマークレット</h3>
+            <h3>📌 ブックマークレット（PC版）</h3>
             <p>以下のリンクをブックマークバーにドラッグ&ドロップしてください：</p>
-            <a href="javascript:(function(){const token=localStorage.getItem('token')||sessionStorage.getItem('token');if(token){const cleanToken=token.replace(/[&quot;]/g,'');navigator.clipboard.writeText(cleanToken).then(()=>{alert('✅ トークンをクリップボードにコピーしました！\n\n注意: このトークンは絶対に他人に教えないでください。');}).catch(()=>{prompt('📋 以下のトークンをコピーしてください（手動コピー）:',cleanToken);});}else{alert('❌ トークンが見つかりませんでした。\n\n以下を確認してください:\n1. Discordにログインしているか\n2. discord.com または discordapp.com でブックマークレットを実行しているか');}})();" class="bookmarklet-link">Discord Token取得</a>
+            <a href="javascript:(function(){try{const token=localStorage.getItem('token')||sessionStorage.getItem('token');if(token){const cleanToken=token.replace(/[&quot;]/g,'');if(navigator.clipboard){navigator.clipboard.writeText(cleanToken).then(()=>{alert('✅ トークンをクリップボードにコピーしました！\n\n注意: このトークンは絶対に他人に教えないでください。');}).catch(()=>{prompt('📋 以下のトークンをコピーしてください（手動コピー）:',cleanToken);});}else{prompt('📋 以下のトークンをコピーしてください:',cleanToken);}}else{alert('❌ トークンが見つかりませんでした。\n\n以下を確認してください:\n1. Discordにログインしているか\n2. discord.com または discordapp.com でブックマークレットを実行しているか\n3. ブラウザの制限により動作しない場合は、開発者ツールでの手動取得をお試しください');}}catch(e){alert('⚠️ エラーが発生しました: '+e.message+'\n\n手動での取得方法をお試しください。');}})();" class="bookmarklet-link">Discord Token取得（PC版）</a>
+        </div>
+        
+        <div class="bookmarklet-container">
+            <h3>📱 モバイル対応版</h3>
+            <p>モバイルブラウザ用の手順：</p>
+            <div class="mobile-instructions">
+                <h4>📌 Chrome Mobile（Android）</h4>
+                <ol>
+                    <li>任意のページをブックマークに追加</li>
+                    <li>ブックマークを編集</li>
+                    <li>URLの部分を以下のコードに置き換える：</li>
+                </ol>
+                <div class="code-block">javascript:(function(){try{const token=localStorage.getItem('token')||sessionStorage.getItem('token');if(token){const cleanToken=token.replace(/[&quot;]/g,'');const result=prompt('📋 以下のトークンをコピーしてください:',cleanToken);if(result){console.log('Token copied to clipboard area');}}else{alert('❌ トークンが見つかりませんでした。');}}catch(e){alert('⚠️ エラー: '+e.message);}})();</div>
+                
+                <h4>📌 Safari Mobile（iOS）</h4>
+                <ol>
+                    <li>任意のページをブックマークに追加</li>
+                    <li>ブックマークを編集</li>
+                    <li>URLの部分を以下のコードに置き換える：</li>
+                </ol>
+                <div class="code-block">javascript:(function(){try{const token=localStorage.getItem('token')||sessionStorage.getItem('token');if(token){const cleanToken=token.replace(/[&quot;]/g,'');const copyText=document.createElement('textarea');copyText.value=cleanToken;document.body.appendChild(copyText);copyText.select();document.execCommand('copy');document.body.removeChild(copyText);alert('✅ トークンをクリップボードにコピーしました！');}else{alert('❌ トークンが見つかりませんでした。');}}catch(e){alert('⚠️ エラー: '+e.message);}})();</div>
+            </div>
         </div>
         
         <div class="instructions">
-            <h3>📋 使用方法</h3>
-            <div class="step">1️⃣ 上記のリンクをブックマークバーにドラッグ&ドロップ</div>
-            <div class="step">2️⃣ Discord（discord.com または discordapp.com）にアクセス</div>
-            <div class="step">3️⃣ Discordにログイン</div>
-            <div class="step">4️⃣ ブックマークレットをクリック</div>
-            <div class="step">5️⃣ トークンが自動的にクリップボードにコピーされます</div>
+            <h3>🚨 2025年版の追加対策について</h3>
+            <div class="step">⚠️ <strong>Discordのセキュリティ強化により、以下の制限があります：</strong></div>
+            <div class="step">• 一部のブラウザでブックマークレットがブロックされる場合があります</div>
+            <div class="step">• Content Security Policy（CSP）により実行が制限される場合があります</div>
+            <div class="step">• 動作しない場合は、開発者ツールでの手動取得をお試しください</div>
+            <div class="step">• 拡張機能の使用も検討してください（Chrome Web Store等）</div>
         </div>
         
         <div class="instructions">
